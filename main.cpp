@@ -13,27 +13,26 @@
 
 #include "pelicula.h"
 #include "inventario.h"
-using namespace std;
 
 int main() {
     // Crear un objeto Inventario
     Inventario inventario;
 
     // Abrir el archivo de entrada
-    ifstream archivo_entrada("Lista.txt");
+    std::ifstream archivo_entrada("Lista.txt");
 
     // Abrir el archivo de entrada que contiene la lista de películas
     if (archivo_entrada.is_open()) 
     {
-        string line;
+        std::string line;
         
         // Saltar la primera línea que contiene los encabezados
-        getline(archivo_entrada, line);
+        std::getline(archivo_entrada, line);
 
         // Leer cada línea del archivo
         while (getline(archivo_entrada, line)) {
-            stringstream ss(line);
-            string titulo, director, genero, lanzamiento_str, duracion_str;
+            std::stringstream ss(line);
+            std::string titulo, director, genero, lanzamiento_str, duracion_str;
             int lanzamiento, duracion;
 
             // Extraer los valores de cada campo separados por comas
@@ -61,7 +60,7 @@ int main() {
     else 
     {
         // Mensaje de error si el archivo no se pudo abrir
-        cout << "No se pudo abrir el archivo de películas." << endl;
+        std::cout << "No se pudo abrir el archivo de películas." << std::endl;
         return 1;
     }
 
@@ -255,4 +254,3 @@ int main() {
 
     return 0;
 }
-
