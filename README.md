@@ -47,15 +47,19 @@ El programa proporciona las siguientes salidas:
 ## Desarrollo de competencias
 ### SICT0301: Evalúa los componentes
 #### Hace un análisis de complejidad correcto y completo para los algoritmos de ordenamiento usados en el programa.
-Para mi proyecto, decidí dado el tamaño del inventario de películas utlizar los siguientes algoritmos de ordenamiento.El objetivo fue utilizar métodos que garantizaran un buen rendimiento general en función de la cantidad de datos, independientemente de los atributos específicos.
-- Shell Sort para ordenar por título y duración. La complejidad temporal de este algoritmo es   O(n log² n), lo cual es aduecuado para listas de tamaño moderado como el inventario de películas (aproximadamente 110 películas).
+Considero que he desarrollado esta competencia porque para mi proyecto, decidí dado el tamaño del inventario de películas utilizar los siguientes algoritmos de ordenamiento.El objetivo fue utilizar métodos que garantizaran un buen rendimiento general en función de la cantidad de datos, independientemente de los atributos específicos.
+- Shell Sort para ordenar por título y duración. La complejidad temporal de este algoritmo es   O(n log² n), lo cual es adecuado para listas de tamaño moderado como el inventario de películas (aproximadamente 110 películas).
 - Merge Sort para ordenar por año de lanzamiento. La complejidad temporal de Merge Sort es O(n log n), lo que lo hace eficiente para listas grandes, ya que nos garantiza un tiempo de ejecución estable en el peor caso.
+Estos algoritmos de ordenamiento fueron implementados en los métodos:
+- Shell Sort: `ordenarPorDuracion` y `ordenarPorTitulo`.
+- Merge Sort: `ordenarPorLanzamiento`.
 
 ### SICT0302: Toma decisiones
 #### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
-Elegí los siguientes algoritmos en función de su eficiencia y facilidad de implementación:
-- Shell Sort fue elegido para ordenar por título y duración debido a sus simplicidad y buen rendimeinto en listas de tamaño medio.
-- Merge Sort fue elegido para ordenar por año de lanzamiento debido a su eficiencia en listas más grandes y su estabilidad, lo cual es crucial cuando se requiere preservar el orden relativo de elementos con atributos similares.
-
+Considero que he desarrollado esta competencia porque seleccione y utilice los algoritmos de ordenamientos más eficientes en función del tamaño de la lista de películas, donde el objetivo principal es gestionar eficientemente el inventario de películas para ordenarlos por distintos atributos.
+Los métodos de ordenamiento en donde se puede observar el desarrollo del objetivo principal son  `ordenaPorTitulo`,`ordenarPorDuracion`,donde se utilizó el algoritmo de ordenamiento Shell Sort por su simplicidad y su buen rendimiento en listas de tamaño medio como la lista de mi proyecto, así también, en el método `ordenarPorLanzamiento` donde se implementa el algoritmo de ordenamiento Merge Sort por su gran eficiencia con listas más grandes y su estabilidad, lo cual es crucial cuando se requiere preservar el orden relativo de elementos con atributos similares.
 La estructura de datos utilizada es un `std::vector`, que permite el acceso eficiente a los elementos y facilita la implementación de los algoritmos de ordenamiento. Esta decisión es adecuada para el tamaño del inventario de películas. 
+
+
+
 
