@@ -29,7 +29,7 @@ El Padrino, Francis Ford Coppola, Drama, 1972, 175
 El Caballero Oscuro, Christopher Nolan, Accion, 2008, 152
 ```
 
-Cada línea contiene los datos de una película seprados por comas:
+Cada línea contiene los datos de una película separados por comas:
 - titulo: Título de la película.
 - director: Nombre del director de la película.
 - genero: Género de la película.
