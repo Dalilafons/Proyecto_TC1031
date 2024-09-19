@@ -47,13 +47,13 @@ El programa proporciona las siguientes salidas:
 ## Desarrollo de competencias
 ### SICT0301: Evalúa los componentes
 #### Hace un análisis de complejidad correcto y completo para los algoritmos de ordenamiento usados en el programa.
-Hago un análisis de complejidad correcto y completo para los algoritmos de ordeamiento usados en el programa.Los algoritmos implementados son:
+Para mi proyecto, decidí dado el tamaño del inventario de películas utlizar los siguientes algoritmos de ordenamiento.El objetivo fue utilizar métodos que garantizaran un buen rendimiento general en función de la cantidad de datos, independientemente de los atributos específicos.
 - Shell Sort para ordenar por título y duración. La complejidad temporal de este algoritmo es   O(n log² n), lo cual es aduecuado para listas de tamaño moderado como el inventario de películas (aproximadamente 110 películas).
 - Merge Sort para ordenar por año de lanzamiento. La complejidad temporal de Merge Sort es O(n log n), lo que lo hace eficiente para listas grandes, ya que nos garantiza un tiempo de ejecución estable en el peor caso.
 
 ### SICT0302: Toma decisiones
 #### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
-Selecciono un algoritmo de ordenamiento adecuado al problema y lo uso correctamente.
+Se seleccionaron los siguientes algoritmos en función de su eficiencia y facilidad de implementación:
 - Shell Sort fue elegido para ordenar por título y duración debido a sus simplicidad y buen rendimeinto en listas de tamaño medio.
 - Merge Sort fue elegido para ordenar por año de lanzamiento debido a su eficiencia en listas más grandes y su estabilidad, lo cual es crucial cuando se requiere preservar el orden relativo de elementos con atributos similares.
 
