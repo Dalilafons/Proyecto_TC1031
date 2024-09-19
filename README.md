@@ -53,9 +53,9 @@ Para mi proyecto, decidí dado el tamaño del inventario de películas utlizar l
 
 ### SICT0302: Toma decisiones
 #### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
-Se seleccionaron los siguientes algoritmos en función de su eficiencia y facilidad de implementación:
+Elegí los siguientes algoritmos en función de su eficiencia y facilidad de implementación:
 - Shell Sort fue elegido para ordenar por título y duración debido a sus simplicidad y buen rendimeinto en listas de tamaño medio.
 - Merge Sort fue elegido para ordenar por año de lanzamiento debido a su eficiencia en listas más grandes y su estabilidad, lo cual es crucial cuando se requiere preservar el orden relativo de elementos con atributos similares.
 
-La estructura de datos utlizada es un `std::vector`, que permite el acceso eficniete a los elementos y facilita la implementación de los algoritmos de ordenamiento.Esta decisión es adecuada para el tamaño del inventario de películas, que es de aproximadamente 110 películas.
+La estructura de datos utilizada es un `std::vector`, que permite el acceso eficiente a los elementos y facilita la implementación de los algoritmos de ordenamiento. Esta decisión es adecuada para el tamaño del inventario de películas. 
 
