@@ -47,6 +47,13 @@ El programa proporciona las siguientes salidas:
 ## Desarrollo de competencias
 ### SICT0301: Evalúa los componentes
 #### Hace un análisis de complejidad correcto y completo para los algoritmos de ordenamiento usados en el programa.
+En mi proyecto, he implementado el algoritmo de ordenamiento Merge Sort en las funciones `ordenarPorTitulo`, `ordenarPorDuracion` y `ordenarPorLanzamiento`. El análisis de complejidad del algoritmo es el siguiente:
+- Complejidad temporal en el peor de los casos: O(n log n), ya que Merge Sort siempre requiere dividir el conjunto de datos y luego combinar las sublistas. Esto implica que, sin importar el estado inicial de la lista, el número de pasos sigue siendo constante.
+- Complejidad temporal en el mejor de los casos: O(n log n), dado que el algoritmo sigue dividiendo y combinando incluso cuando la lista está parcialmente o completamente ordenada.
+  
+Comparado con otros algoritmos, como Bubble Sort, Selection Sort, Insertion Sort, y Quick Sort, que en el peor de los casos tienen una complejidad de O(n²), Merge Sort es más eficiente para grandes volúmenes de datos. El algoritmo también es estable, lo que significa que mantiene el orden relativo de los elementos iguales después del proceso de ordenamiento, a diferencia de Quick Sort, que no lo garantiza.
+Esta estabilidad es importante en mi proyecto, ya que se manejan arreglos de películas con múltiples atributos. Por ejemplo, al ordenar por duración, si varias películas tienen la misma duración, Merge Sort mantendrá el orden original relativo entre ellas.
+
 Considero que he desarrollado esta competencia porque para mi proyecto, decidí dado el tamaño del inventario de películas utilizar los siguientes algoritmos de ordenamiento.El objetivo fue utilizar métodos que garantizaran un buen rendimiento general en función de la cantidad de datos, independientemente de los atributos específicos.
 - Shell Sort para ordenar por título y duración. La complejidad temporal de este algoritmo es   O(n log² n), lo cual es adecuado para listas de tamaño moderado como el inventario de películas (aproximadamente 110 películas).
 - Merge Sort para ordenar por año de lanzamiento. La complejidad temporal de Merge Sort es O(n log n), lo que lo hace eficiente para listas grandes, ya que nos garantiza un tiempo de ejecución estable en el peor caso.
