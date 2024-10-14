@@ -52,22 +52,19 @@ En mi proyecto, he implementado el algoritmo de ordenamiento Merge Sort en las f
 - Complejidad temporal en el mejor de los casos: O(n log n), dado que el algoritmo sigue dividiendo y combinando incluso cuando la lista está parcialmente o completamente ordenada.
   
 Comparado con otros algoritmos, como Bubble Sort, Selection Sort, Insertion Sort, y Quick Sort, que en el peor de los casos tienen una complejidad de O(n²), Merge Sort es más eficiente para grandes volúmenes de datos. El algoritmo también es estable, lo que significa que mantiene el orden relativo de los elementos iguales después del proceso de ordenamiento, a diferencia de Quick Sort, que no lo garantiza.
-Esta estabilidad es importante en mi proyecto, ya que se manejan arreglos de películas con múltiples atributos. Por ejemplo, al ordenar por duración, si varias películas tienen la misma duración, Merge Sort mantendrá el orden original relativo entre ellas.
 
-Considero que he desarrollado esta competencia porque para mi proyecto, decidí dado el tamaño del inventario de películas utilizar los siguientes algoritmos de ordenamiento.El objetivo fue utilizar métodos que garantizaran un buen rendimiento general en función de la cantidad de datos, independientemente de los atributos específicos.
-- Shell Sort para ordenar por título y duración. La complejidad temporal de este algoritmo es   O(n log² n), lo cual es adecuado para listas de tamaño moderado como el inventario de películas (aproximadamente 110 películas).
-- Merge Sort para ordenar por año de lanzamiento. La complejidad temporal de Merge Sort es O(n log n), lo que lo hace eficiente para listas grandes, ya que nos garantiza un tiempo de ejecución estable en el peor caso.
-Estos algoritmos de ordenamiento fueron implementados en los métodos:
-- Shell Sort: `ordenarPorDuracion` y `ordenarPorTitulo`.
-- Merge Sort: `ordenarPorLanzamiento`.
+Esta estabilidad es importante en mi proyecto, ya que se manejan arreglos de películas con múltiples atributos. Por ejemplo, al ordenar por duración, si varias películas tienen la misma duración, Merge Sort mantendrá el orden original relativo entre ellas.
 
 ### SICT0302: Toma decisiones
 #### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
-Considero que he desarrollado esta competencia porque seleccione y utilice los algoritmos de ordenamientos más eficientes en función del tamaño de la lista de películas, donde el objetivo principal es gestionar eficientemente el inventario de películas para ordenarlos por distintos atributos.
+Para mi proyecto, decidí utilizar Merge Sort debido a sus características específicas que lo hacen el más adecuado para el contexto:
 
-Los métodos de ordenamiento en donde se puede observar el desarrollo del objetivo principal son  `ordenaPorTitulo`,`ordenarPorDuracion`,donde se utilizó el algoritmo de ordenamiento Shell Sort por su simplicidad y su buen rendimiento en listas de tamaño medio como la lista de mi proyecto, así también, en el método `ordenarPorLanzamiento` donde se implementa el algoritmo de ordenamiento Merge Sort por su gran eficiencia con listas más grandes y su estabilidad, lo cual es crucial cuando se requiere preservar el orden relativo de elementos con atributos similares.
+- Su complejidad temporal constante de O(n log n) en el mejor y el peor de los casos, lo que lo hace ideal para listas grandes y desordenadas.
+- Su estabilidad garantiza que los elementos con valores iguales mantengan su orden relativo original, algo fundamental al manejar conjuntos de datos complejos como en mi proyecto cuenta con un arreglo de varios objetos en este caso películas con múltiples atributos,  al elegir ciertas funciones por ejemplo ordenar por Duración, algunas películas pueden tener el mismo valor de duración, entonces Merge Sort mantiene el mismo orden relativo que tenían en la lista original después de ordenarlas, a comparación de por ejemplo Quick Sort que cuando tiene elementos iguales, no garantiza el orden relativo de estos elementos después del ordenamiento. 
+- Al comparar con otros algoritmos como Quick Sort, que aunque eficiente tiene un peor caso de O(n²), y Insertion Sort o Bubble Sort, que tienen un mejor rendimiento sólo en listas parcialmente ordenadas, Merge Sort se destaca como la mejor opción para manejar datos desordenados y en grandes volúmenes.
+  
+En conclusión, el algoritmo de ordenamiento que elegí Mergesort fue el mejor para mi proyecto, por su rendimiento constante, por la mejor complejidad temporal a comparacion de otros algoritmos, en el peor y en el mejor de los casos, también por su adaptabilidad sin importar el estado inicial de la lista a ordenar y por último por su capacidad de manejar grandes conjuntos de datos de manera eficiente. 
 
-La estructura de datos utilizada es un `std::vector`, que permite el acceso eficiente a los elementos y facilita la implementación de los algoritmos de ordenamiento. Esta decisión es adecuada para el tamaño del inventario de películas. 
 
 
 
