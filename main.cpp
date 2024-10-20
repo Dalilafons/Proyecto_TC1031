@@ -1,76 +1,86 @@
 /*
  * main.cpp
  *
- *  Created on: 18/09/2024
+ *  Created on: 19/10/2024
  *      Author: Dalila Fonseca Maya A01711722
  */
 
-#include <fstream>
 #include <iostream>
+#include <fstream>
 #include <string>
-#include <sstream> 
+#include <sstream>
+#include <vector>
 #include <limits>
 
 #include "pelicula.h"
+#include "avl.h"
 #include "inventario.h"
 
-int main() {
-    // Crear un objeto Inventario
+int main() 
+{
+    // Crear un árbol binario de búsqueda (AVL) para manejar películas.
+    AVL<Pelicula> arbolPeliculas;
+    
+    // Crear un inventario para almacenar las películas en un vector.
     Inventario inventario;
 
-    // Abrir el archivo de entrada
+    // Abrir el archivo de entrada que contiene la lista de películas.
     std::ifstream archivo_entrada("Lista.txt");
-
-    // Abrir el archivo de entrada que contiene la lista de películas
-    if (archivo_entrada.is_open()) 
+    if (!archivo_entrada.is_open()) 
     {
-        std::string line;
-        
-        // Saltar la primera línea que contiene los encabezados
-        std::getline(archivo_entrada, line);
-
-        // Leer cada línea del archivo
-        while (getline(archivo_entrada, line)) {
-            std::stringstream ss(line);
-            std::string titulo, director, genero, lanzamiento_str, duracion_str;
-            int lanzamiento, duracion;
-
-            // Extraer los valores de cada campo separados por comas
-            getline(ss, titulo, ',');
-            getline(ss, director, ',');
-            getline(ss, genero, ',');
-            getline(ss, lanzamiento_str, ',');
-            getline(ss, duracion_str, ',');
-
-            // Convertir los valores de lanzamiento y duracion a enteros
-            lanzamiento = stoi(lanzamiento_str);
-            duracion = stoi(duracion_str);
-
-            // Crear un objeto Pelicula con los valores leídos
-            Pelicula pelicula(titulo, director, genero, lanzamiento, duracion);
-
-            // Agregar la película al inventario
-            inventario.agregarPelicula(pelicula);
-        }
-
-        // Cerrar el archivo
-        archivo_entrada.close();
-    }
-
-    else 
-    {
-        // Mensaje de error si el archivo no se pudo abrir
-        std::cout << "No se pudo abrir el archivo de películas." << std::endl;
+        std::cout << "No se pudo abrir el archivo de peliculas." << std::endl;
+        // Termina el programa si no se puede abrir el archivo.
         return 1;
     }
 
-    // Variable para almacenar la opción seleccionada por el usuario
+    // Leer el archivo y agregar las películas al árbol.
+    std::string line;
+    // Saltar la primera línea (encabezados).
+    std::getline(archivo_entrada, line); 
+
+    // Leer cada línea del archivo y procesar sus valores.
+    while (getline(archivo_entrada, line)) 
+    {
+        std::stringstream ss(line);
+        std::string titulo, director, genero, lanzamiento_str, duracion_str;
+        int lanzamiento, duracion;
+
+        // Leer los valores de cada campo separados por comas.
+        getline(ss, titulo, ',');
+        getline(ss, director, ',');
+        getline(ss, genero, ',');
+        getline(ss, lanzamiento_str, ',');
+        getline(ss, duracion_str, ',');
+
+        // Convertir los valores a enteros.
+        lanzamiento = std::stoi(lanzamiento_str);
+        duracion = std::stoi(duracion_str);
+
+        // Crear el objeto Pelicula.
+        Pelicula pelicula(titulo, director, genero, lanzamiento, duracion);
+
+        // Agregar la película al vector del inventario.
+        inventario.agregarPelicula(pelicula);
+
+        // Agregar la película al árbol AVL si no está presente.
+        if (arbolPeliculas.findByTitle(titulo) == NULL) 
+        {
+            // Insertar en el árbol AVL.
+            arbolPeliculas.add(pelicula);
+        } 
+    }
+
+    // Cerrar el archivo de entrada
+    archivo_entrada.close();  
+
+    // Variable para almacenar la opción seleccionada por el usuario.
     int opcion;
     std::string volverMenuPrincipal = "si";
 
-    // Bucle principal del menú
-    while( volverMenuPrincipal == "si")
+    // Bucle principal del menú de opciones.
+    while ( volverMenuPrincipal == "si")
     {
+        // Mostrar el menú principal.
         std::cout << "-----------------------------------" << std::endl;
         std::cout << "MOVIE SELECTOR" << std::endl;
         std::cout << "Menu principal: " << std::endl;
@@ -78,179 +88,198 @@ int main() {
         std::cout << "2. Agregar pelicula." << std::endl;
         std::cout << "3. Ordenar inventario. " << std::endl;
         std::cout << "4. Buscar pelicula. " << std::endl;
-        std::cout << "5. Salir. " << std::endl;
+        std::cout << "5. Eliminar pelicula. " << std::endl;
+        std::cout << "6. Salir. " << std::endl;
         std::cout << "Elige una opcion..." ;
         std::cin >> opcion;
-        
-        // Opción para mostrar todas las películas en el inventario
+
+        // Mostrar todas las películas del árbol AVL.
         if (opcion == 1)
         {
             std::cout << "INVENTARIO--------------------------" << std::endl;
-            inventario.mostrarPeliculas();
+            std::cout << arbolPeliculas.inorder() << std::endl;
         }
 
-        // Opción para agregar nuevas películas al inventario
+        // Agregar una nueva película al inventario y al árbol.
         else if (opcion == 2)
         {
-            std::string agregar = "si";
-            std::string peli_titulo;
-            std::string peli_director;
-            std::string peli_genero;
-            int peli_lanzamiento;
-            int peli_duracion;
+            std::string titulo, director, genero;
+            int lanzamiento, duracion;
+
+            std::cout << "\nAGREGAR PELICULA--------------------";
+            std::cout << "\nAgregar una nueva pelicula al inventario:\n";
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            // Leer los datos de la película.
+            std::cout << "Introduce el titulo de la pelicula: ";
+            std::getline(std::cin, titulo);  
+
+            std::cout << "Introduce el director de la pelicula: ";
+            std::getline(std::cin, director);  
+
+            std::cout << "Introduce el genero de la pelicula: ";
+            std::getline(std::cin, genero);  
+
+            std::cout << "Introduce el anio de lanzamiento: ";
+            std::cin >> lanzamiento; 
+            std::cin.ignore();
+
+            std::cout << "Introduce la duracion en minutos: ";
+            std::cin >> duracion;  
+            std::cin.ignore();
+
+            // Crear la película.
+            Pelicula nuevaPelicula(titulo, director, genero, lanzamiento, duracion);
+
+            // Agregar al vector del inventario.
+            inventario.agregarPelicula(nuevaPelicula);
+
+            // Verificar si la película ya está en el árbol.
+            if (arbolPeliculas.findByTitle(titulo) == NULL) 
+            {
+                // Si no existe, agregar la película al árbol.
+                arbolPeliculas.add(nuevaPelicula);
+            } 
+        }
+
+        // Ordenar el inventario según el criterio seleccionado.
+        else if (opcion == 3) 
+        {
+            std::string VolverAOrdenar = "si";
+            int criterio;
             
-            // Bucle para agregar varias películas
-            while ( agregar == "si" )
+            while (VolverAOrdenar == "si")
             {
-                // Limpiar el buffer de entrada
-                std::cin.ignore(std::numeric_limits
-                <std::streamsize>::max(),'\n');  
+                std::cout << "\nORDENAR PELICULA----------------------\n";
+                std::cout << "Elige el criterio de ordenamiento:" << std::endl;
+                std::cout << "1. Por titulo." << std::endl;
+                std::cout << "2. Por duracion." << std::endl;
+                std::cout << "3. Por anio de lanzamiento." << std::endl;
+                std::cin >> criterio;
 
-                // Capturar los datos de la película
-                std::cout << "AGREGAR PELICULAS------------------" << std::endl;
-                std::cout << "Ingresa el titulo (ej:El Rey): " << std::endl;
-                std::getline(std::cin, peli_titulo); 
-
-                std::cout << "Ingresa el director (ej:Roger): " << std::endl;
-                std::getline(std::cin, peli_director);  
-
-                std::cout << "Ingresa el genero (ej:Comedia): " << std::endl;
-                std::getline(std::cin, peli_genero);  
-
-                std::cout << "Ingresa el anio de lanzamiento: " << std::endl;
-                std::cin >> peli_lanzamiento;
-
-                std::cout << "Ingresa la duracion (min.totales): " << std::endl;
-                std::cin >> peli_duracion;
-
-                // Agregar la película al inventario
-                inventario.agregarPelicula(Pelicula(peli_titulo,peli_director,
-                peli_genero,peli_lanzamiento,peli_duracion));
-                
-                // Preguntar si desea agregar otra película
-                std::cout << "Deseas seguir agregando peliculas? (si/no): ";
-                std::cin >> agregar;
-            }
-        }
-
-        // Opción para ordenar las películas en el inventario
-        else if (opcion == 3)
-        {
-            std::string ordenar = "si";
-            int opcion_ordenar;
-
-            // Bucle para ordenar según diferentes criterios
-            while( ordenar == "si")
-            {
-                std::cout << "ORDENAR PELICULA------------------" << std::endl;
-                std::cout << "1. Ordenar por titulo. " << std::endl;
-                std::cout << "2. Ordenar por anio de lanzamiento." << std::endl;
-                std::cout << "3. Ordenar por duracion." << std::endl;
-                std::cout << "Elige una opcion..." ;
-                std::cin >> opcion_ordenar;
-
-                // Ordenar por título
-                if (opcion_ordenar == 1)
+                // Ejecutar la ordenación según el criterio.
+                if (criterio == 1)
                 {
-                    std::cout << "ORDENAR POR TITULO-------------" << std::endl;
                     inventario.ordenarPorTitulo();
+                    std::cout << "Peliculas ordenadas por Titulo:" << std::endl;
                     inventario.mostrarPeliculas();
                 }
-
-                // Ordenar por año de lanzamiento
-                else if (opcion_ordenar == 2)
+                else if(criterio == 2)
                 {
-                    std::cout << "ORDENAR POR LANZAMIENTO--------" << std::endl;
-                    inventario.ordenarPorLanzamiento();
-                    inventario.mostrarPeliculas();
-                }
-
-                // Ordenar por duración
-                else if (opcion_ordenar == 3)
-                {
-                    std::cout << "ORDENAR POR DURACION-----------" << std::endl;
                     inventario.ordenarPorDuracion();
+                    std::cout << "Peliculas ordenadas por Duracion:" << std::endl;
                     inventario.mostrarPeliculas();
                 }
-
-                // Opción inválida
-                else 
+                else if(criterio == 3)
                 {
-                    std::cout << "Opcion invalida...." << std::endl;
-                    std::cout << "Intenta nuevamente." << std::endl;
+                    inventario.ordenarPorLanzamiento();
+                    std::cout << "Peliculas ordenadas por Lanzamiento:" << std::endl;
+                    inventario.mostrarPeliculas();
                 }
-
-                // Preguntar si desea seguir ordenando
-                std::cout << "Deseas seguir ordenando? (si/no): ";
-                std::cin >> ordenar;
-            }
-        }
-
-        // Opción para buscar una película por título
-        else if (opcion == 4)
-        {
-            std::string buscar = "si";
-
-            // Bucle para realizar varias búsquedas
-            while (buscar == "si")
-            {
-                std::string T_Buscado;
-
-                std::cout << "BUSCAR PELICULA ------------------" << std::endl;
-                std::cout << "Introduce el titulo de la pelicula: ";
-
-                // Limpiar el buffer de entrada
-                std::cin.ignore(std::numeric_limits
-                <std::streamsize>::max(), '\n');
-          
-                // Obtener el título de la película a buscar
-                std::getline(std::cin, T_Buscado);  
-
-                // Buscar la película por título usando búsqueda binaria
-                Pelicula* encontrada = inventario.buscarPorTitulo(T_Buscado);
-
-                // Comprobar si se encontró la película
-                if (encontrada != nullptr) 
-                {
-                    std::cout << "Pelicula encontrada:" << std::endl;
-                    encontrada->mostrarInformacion();
-                }
-                
                 else
                 {
-                    std::cout << "No se encontro la pelicula: " 
-                    << T_Buscado << std::endl;
+                    std::cout << "Criterio invalido." << std::endl;
                 }
-                
-                // Preguntar si desea seguir buscando
-                std::cout << "Deseas seguir buscando? (si/no): ";
-                std::cin >> buscar;
+
+                // Preguntar si desea volver al ordenar (si no eligió salir).
+                if (volverMenuPrincipal != "no") 
+                {
+                    std::cout << "Deseas volver a ordenar? (si/no):";
+                    std::cin >> VolverAOrdenar;
+                    std::cin.ignore();
+                }   
+            } 
+        }
+
+        // Buscar una película por título.
+        else if(opcion == 4)
+        {
+            std::string buscarTitulo;
+
+            std::cout << "\nBUSCAR PELICULA-----------------------\n";
+            std::cout << "Introduce el titulo de la pelicula a buscar: ";
+            // Limpiar el buffer antes de usar getline.
+            std::cin.ignore();  
+            std::getline(std::cin, buscarTitulo);
+    
+            std::cout << "\nBuscando la pelicula \"" << buscarTitulo << "\" por titulo..." << std::endl;
+            
+            Pelicula* peliculaEncontrada = arbolPeliculas.findByTitle(buscarTitulo);
+            
+            if (peliculaEncontrada != NULL) 
+            {
+                std::cout << "La pelicula \"" << buscarTitulo << "\" fue encontrada." << std::endl;
+                // Mostrar información de la película.
+                peliculaEncontrada->mostrarInformacion();  
+            } 
+            else 
+            {
+                std::cout << "La pelicula \"" << buscarTitulo << "\" no se encontro." << std::endl;
             }
         }
 
-
-        else if (opcion == 5)
+        // Eliminar una película.
+        else if(opcion == 5)
         {
-            // Salir del bucle y mostrar el mensaje de despedida
+            std::string eliminarTitulo;
+
+            std::cout << "\nELIMINAR PELICULA-----------------------\n";
+
+            // Limpiar buffer de entrada por cualquier residuo previo
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            std::cout << "Introduce el titulo de la pelicula a eliminar: ";
+            std::getline(std::cin, eliminarTitulo);  
+
+            if (eliminarTitulo.empty()) 
+            {
+                std::cout << "Error: No se ingreso ningun titulo. Intentalo nuevamente." << std::endl;
+            } 
+            else 
+            {
+                std::cout << "\nEliminando la pelicula \"" << eliminarTitulo << "\"..." << std::endl;
+                Pelicula peliculaEliminar(eliminarTitulo, "", "", 0, 0);
+
+                try 
+                {
+                    // Eliminar película del árbol.
+                    arbolPeliculas.remove(peliculaEliminar);
+                    // Eliminar película de inevntario.
+                    inventario.eliminarPelicula(eliminarTitulo);
+                    std::cout << "La pelicula \"" << eliminarTitulo << "\" fue eliminada." << std::endl;
+                } 
+                catch (NoSuchElement& e) 
+                {
+                    std::cout << "No se pudo eliminar la pelicula \"" << eliminarTitulo << "\" porque no se encontro." << std::endl;
+                }
+            }
+        }
+
+        // Salir del programa.
+        else if(opcion == 6)
+        {
+            // Salir del bucle y mostrar el mensaje de despedida.
             volverMenuPrincipal = "no";
         }
 
-        // Opción inválida en el menú principal
+        // Validación de opciones inválidas.
         else 
         {
             std::cout << "Opcion invalida, intenta nuevamente." << std::endl;
         }
 
-        // Preguntar si desea volver al menú principal (si no eligió salir)
-        if (volverMenuPrincipal != "no") {
+        // Preguntar si desea volver al menú principal (si no eligió salir).
+        if (volverMenuPrincipal != "no") 
+        {
             std::cout << "Deseas volver al menu? (si/no):";
             std::cin >> volverMenuPrincipal;
+            std::cin.ignore();
         }
     }
 
-    // Mensaje de despedida
+    // Mensaje de despedida.
     std::cout << "Gracias por usar el Movie Selector." << std::endl;
     std::cout << "Vuelva pronto!" << std::endl;
-
+    
     return 0;
 }
