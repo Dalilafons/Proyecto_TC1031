@@ -1,7 +1,7 @@
 /*
  * pelicula.h
  *
- *  Created on: 18/09/2024
+ *  Created on: 19/10/2024
  *      Author: Dalila Fonseca Maya A01711722
  */
 
@@ -14,7 +14,7 @@
 
 class Pelicula
 {
-    // Variables de instancia (atributos de la película)
+    // Variables de instancia (atributos de la película).
     protected:
         std::string titulo;
         std::string director;
@@ -22,29 +22,30 @@ class Pelicula
         int lanzamiento;
         int duracion;
 
-    // Métodos de Pelicula (funciones)
+    // Métodos de Pelicula (funciones).
     public:
         Pelicula();
         Pelicula(std::string titulo_1, std::string director_1, 
                  std::string genero_1, int lanzamiento_1, int duracion_1);
         std::string getGenero() const;
         std::string getTitulo() const;
+        std::string getDirector() const;
         int getLanzamiento() const;
         int getDuracion() const;
         void mostrarInformacion() const;
 };  
 
-// Implementación del constructor por defecto
+// Implementación del constructor por defecto.
 Pelicula::Pelicula() 
     : titulo(""), director(""), genero(""), lanzamiento(0), duracion(0) {}
 
-// Implementación del constructor parametrizado
+// Implementación del constructor parametrizado.
 Pelicula::Pelicula(std::string titulo_1, std::string director_1, 
                    std::string genero_1, int lanzamiento_1, int duracion_1)
     : titulo(titulo_1), director(director_1), genero(genero_1), 
       lanzamiento(lanzamiento_1), duracion(duracion_1) {}
 
-// Implementación de los métodos "getters"
+// Implementación de los métodos "getters".
 std::string Pelicula::getGenero() const 
     {
         return genero;
@@ -54,6 +55,11 @@ std::string Pelicula::getTitulo() const
     {
         return titulo;
     }
+
+std::string Pelicula::getDirector() const 
+{
+    return director;
+}
         
 int Pelicula::getLanzamiento() const
     {
@@ -65,7 +71,7 @@ int Pelicula::getDuracion() const
         return duracion;
     }
 
-// Implementación del método para mostrar la información de la película
+// Implementación del método para mostrar la información de la película.
 void Pelicula::mostrarInformacion() const
     {
         std::cout << "Titulo: " << titulo << std::endl;
@@ -75,4 +81,4 @@ void Pelicula::mostrarInformacion() const
         std::cout << "Duracion: " << duracion << std::endl;
     }
 
-#endif //PELICULA_H
+#endif // PELICULA_H
