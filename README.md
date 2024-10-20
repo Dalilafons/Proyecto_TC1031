@@ -170,26 +170,31 @@ En conclusión, el algoritmo de ordenamiento que elegí Mergesort fue el mejor p
 #### Selecciona una estructura de datos adecuada al problema y la usa correctamente.
 Para mi proyecto, seleccioné dos estructuras de datos fundamentales: vector y Árbol AVL. La decisión de utilizar ambas estructuras se tomó cuidadosamente para abordar diferentes necesidades específicas del inventario de películas y optimizar tanto la eficiencia como la funcionalidad.
 
-- Selección y uso del `Vector`:
-    - Utilicé un vector porque es una estructura dinámica y eficiente para almacenar colecciones de datos, en este caso, películas. Los vectores permiten realizar accesos directos a los elementos mediante índices en O(1), lo que es ideal para recorrer y mostrar todas las películas del inventario de manera secuencial.
-    - El vector se utiliza principalmente en las funciones `mostrarPeliculas()` y para almacenar las películas añadidas por el usuario.
-    - Permite recorrer los elementos rápidamente para visualizarlos en la consola.
-    - Es fácil de gestionar y redimensionar dinámicamente según el tamaño del inventario.
-    - Una limitación, es que debido a que las operaciones de inserción y eliminación en posiciones específicas tienen una complejidad de O(n), decidí complementar el uso del vector con un Árbol AVL.
+##### Selección y uso del Vector:
 
-- Selección y uso del `Árbol AVL`:
-    - Incorporé un Árbol AVL para manejar las operaciones de búsqueda, inserción y eliminación de películas de manera eficiente, ya que estas operaciones en un vector no escalan bien. El Árbol AVL es ideal para problemas en los que se requiere mantener un conjunto de datos ordenado y acceder a ellos de manera rápida y eficiente. En este proyecto, la búsqueda de películas por título es una operación clave, lo que justificó la selección del AVL.
-    - Podemos ver su uso:
-        Búsqueda: `arbolPeliculas.findByTitle(titulo)`.
-        Inserción: `arbolPeliculas.add(nuevaPelicula)`.
-        Eliminación: `arbolPeliculas.remove(peliculaEliminar)`.
-        Recorrido inorder: `arbolPeliculas.inorder()`.
-    - Sus ventajas son:
-        -Búsqueda rápida: O(log n), incluso con un inventario grande.
-        -Inserción y eliminación balanceadas: El árbol se mantiene equilibrado, garantizando que las operaciones críticas no se degraden.
-        -Recorrido ordenado: Con el recorrido inorder, las películas se muestran en orden alfabético.
+Utilicé un vector porque es una estructura dinámica y eficiente para almacenar colecciones de datos, en este caso, películas. Los vectores permiten realizar accesos directos a los elementos mediante índices en O(1), lo que es ideal para recorrer y mostrar todas las películas del inventario de manera secuencial.  
+El vector se utiliza principalmente en las funciones `mostrarPeliculas()` y para almacenar las películas añadidas por el usuario.  
+Permite recorrer los elementos rápidamente para visualizarlos en la consola.  
+Es fácil de gestionar y redimensionar dinámicamente según el tamaño del inventario.  
 
-La combinación de `vector` y `Árbol AVL` fue la solución más adecuada para mi proyecto. El vector permite gestionar y recorrer fácilmente la lista de películas, mientras que el Árbol AVL garantiza un rendimiento eficiente en operaciones de búsqueda, inserción y eliminación, con una complejidad de O(log n).
+Una limitación es que, debido a que las operaciones de inserción y eliminación en posiciones específicas tienen una complejidad de O(n), decidí complementar el uso del vector con un Árbol AVL.
+
+##### Selección y uso del Árbol AVL:
+
+Incorporé un Árbol AVL para manejar las operaciones de búsqueda, inserción y eliminación de películas de manera eficiente, ya que estas operaciones en un vector no escalan bien. El Árbol AVL es ideal para problemas en los que se requiere mantener un conjunto de datos ordenado y acceder a ellos de manera rápida y eficiente. En este proyecto, la búsqueda de películas por título es una operación clave, lo que justificó la selección del AVL.
+
+Podemos ver su uso:  
+- **Búsqueda:** `arbolPeliculas.findByTitle(titulo)`  
+- **Inserción:** `arbolPeliculas.add(nuevaPelicula)`  
+- **Eliminación:** `arbolPeliculas.remove(peliculaEliminar)`  
+- **Recorrido inorder:** `arbolPeliculas.inorder()`
+
+#### Sus ventajas son:
+- **Búsqueda rápida:** O(log n), incluso con un inventario grande.  
+- **Inserción y eliminación balanceadas:** El árbol se mantiene equilibrado, garantizando que las operaciones críticas no se degraden.  
+- **Recorrido ordenado:** Con el recorrido inorder, las películas se muestran en orden alfabético.
+
+La combinación de vector y Árbol AVL fue la solución más adecuada para mi proyecto. El vector permite gestionar y recorrer fácilmente la lista de películas, mientras que el Árbol AVL garantiza un rendimiento eficiente en operaciones de búsqueda, inserción y eliminación, con una complejidad de O(log n).
 
 Este desarrollo de la competencia se observa claramente en la forma en que seleccioné cada estructura de datos para aprovechar sus puntos fuertes y compensar sus limitaciones. El vector es ideal para operaciones de acceso y recorrido secuencial, mientras que el Árbol AVL es fundamental para mantener un inventario dinámico y eficiente. Esta combinación optimiza tanto la funcionalidad como el rendimiento del sistema, asegurando que el proyecto sea escalable y eficiente en la gestión del inventario de películas.
 
