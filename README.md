@@ -199,76 +199,103 @@ La combinación de vector y Árbol AVL fue la solución más adecuada para mi pr
 Este desarrollo de la competencia se observa claramente en la forma en que seleccioné cada estructura de datos para aprovechar sus puntos fuertes y compensar sus limitaciones. El vector es ideal para operaciones de acceso y recorrido secuencial, mientras que el Árbol AVL es fundamental para mantener un inventario dinámico y eficiente. Esta combinación optimiza tanto la funcionalidad como el rendimiento del sistema, asegurando que el proyecto sea escalable y eficiente en la gestión del inventario de películas.
 
 ### SICT0303: Implementa acciones científicas
-#### Implementa mecanismos para consultar información de las estructras correctos.
+#### Implementa mecanismos para consultar información de las estructuras correctos.
+
 En mi proyecto, he implementado mecanismos eficientes y correctos para consultar información de las estructuras de datos utilizadas: el vector y el Árbol AVL. A continuación, explicaré cómo se aplican estos mecanismos y se garantiza la precisión de las consultas:
 
-1. Mecanismos de consulta en el Vector:
-    El vector almacena todas las películas del inventario. La consulta de información se realiza mediante el acceso secuencial a sus elementos, aprovechando su eficiencia en recorridos.
-    `inventario.mostrarPeliculas()`, esta función permite listar todas las películas almacenadas en el vector, proporcionando una salida clara al usuario.
-    La complejidad O(1) del acceso a un elemento por índice permite recorridos eficientes, asegurando que la visualización completa del inventario sea rápida, sin importar el número de elementos.
+1. **Mecanismos de consulta en el Vector:**
+   El vector almacena todas las películas del inventario. La consulta de información se realiza mediante el acceso secuencial a sus elementos, aprovechando su eficiencia en recorridos.
+   `inventario.mostrarPeliculas()`, esta función permite listar todas las películas almacenadas en el vector, proporcionando una salida clara al usuario.  
+   La complejidad **O(1)** del acceso a un elemento por índice permite recorridos eficientes, asegurando que la visualización completa del inventario sea rápida, sin importar el número de elementos.
 
-2. Mecanismos de consulta en el Árbol AVL:
-    El Árbol AVL se utiliza para realizar búsquedas rápidas y precisas por título, asegurando que cada consulta se resuelva en tiempo O(log n).
-    `Pelicula* peliculaEncontrada = arbolPeliculas.findByTitle(titulo)`,esta función busca una película por su título y devuelve su información si es encontrada. Además, el recorrido inorder se utiliza para mostrar todas las películas en orden alfabético: `std::cout << arbolPeliculas.inorder() << std::endl`.
-    El AVL garantiza un tiempo de consulta eficiente mediante su estructura balanceada. La búsqueda en tiempo O(log n) es posible gracias a la reestructuración del árbol con rotaciones, asegurando que ninguna operación degrade el rendimiento del sistema.
+2. **Mecanismos de consulta en el Árbol AVL:**
+   El Árbol AVL se utiliza para realizar búsquedas rápidas y precisas por título, asegurando que cada consulta se resuelva en tiempo **O(log n)**.  
+   `Pelicula* peliculaEncontrada = arbolPeliculas.findByTitle(titulo)`, esta función busca una película por su título y devuelve su información si es encontrada. Además, el recorrido inorder se utiliza para mostrar todas las películas en orden alfabético:  
+   `std::cout << arbolPeliculas.inorder() << std::endl`.  
+   El AVL garantiza un tiempo de consulta eficiente mediante su estructura balanceada. La búsqueda en tiempo **O(log n)** es posible gracias a la reestructuración del árbol con rotaciones, asegurando que ninguna operación degrade el rendimiento del sistema.
 
-3. Validación de las consultas:
-    En mi proyecto, las consultas no solo se ejecutan correctamente, sino que también se validan para manejar errores:
-        - Búsqueda fallida: Si una película no se encuentra en el árbol, se muestra un mensaje claro al usuario: `if (peliculaEncontrada == NULL) {std::cout << "La pelicula no se encontro." << std::endl;}`
-        - Visualización ordenada: El recorrido inorder garantiza que el inventario siempre se muestre en orden alfabético por título.
-        - Además esta elección está basada en la complejidad computacional:
-            - O(1) para accesos en el vector.
-            - O(log n) para búsquedas en el AVL.
-            - O(n) para el recorrido inorder del árbol.
+3. **Validación de las consultas:**
+   En mi proyecto, las consultas no solo se ejecutan correctamente, sino que también se validan para manejar errores:
+   - **Búsqueda fallida:** Si una película no se encuentra en el árbol, se muestra un mensaje claro al usuario:
+     ```cpp
+     if (peliculaEncontrada == NULL) {
+         std::cout << "La pelicula no se encontro." << std::endl;
+     }
+     ```
+   - **Visualización ordenada:** El recorrido inorder garantiza que el inventario siempre se muestre en orden alfabético por título.
+   - **Complejidad computacional:**
+     - **O(1)** para accesos en el vector.
+     - **O(log n)** para búsquedas en el AVL.
+     - **O(n)** para el recorrido inorder del árbol.
 
 He desarrollado esta competencia al implementar mecanismos científicos y correctos para consultar información de las estructuras de datos utilizadas. El vector permite realizar consultas eficientes para recorrer y mostrar el inventario completo, mientras que el Árbol AVL garantiza búsquedas rápidas por título y recorridos ordenados mediante el recorrido inorder.
 
 Este desarrollo se observa en las funciones que realizan búsquedas, muestran películas y manejan situaciones donde las consultas fallan. Además, el uso de estructuras eficientes y sus mecanismos de consulta aseguran que el proyecto sea preciso, funcional y escalable.
 
+---
+
 #### Implementa mecanismos de lectura de archivos para cargar datos a las estructuras de manera correcta.
+
 En mi proyecto, he implementado un mecanismo eficiente y funcional para leer los datos desde un archivo de texto llamado `Lista.txt` y cargarlos tanto en el vector como en el Árbol AVL. A continuación, detallo cómo se aplica este mecanismo y cómo garantiza que los datos se gestionen correctamente en cada estructura de datos.
 
-1. Lectura del archivo de entrada y procesamiento de datos:
-    El archivo `Lista.txt` contiene una lista de películas, con sus atributos separados por comas, como título, director, género, año de lanzamiento y duración. Este archivo es leído línea por línea y procesado para cargar los datos tanto en el vector como en el Árbol AVL.
-    - Uso del vector y del  Árbol AVL:
-        - Vector: Almacena todas las películas de forma secuencial, permitiendo recorrerlas y ordenarlas fácilmente.
-        - Árbol AVL: Permite gestionar las películas mediante operaciones eficientes como búsqueda, inserción y eliminación, manteniendo un acceso rápido y evitando duplicados.
+1. **Lectura del archivo de entrada y procesamiento de datos:**
+   El archivo `Lista.txt` contiene una lista de películas, con sus atributos separados por comas, como título, director, género, año de lanzamiento y duración. Este archivo es leído línea por línea y procesado para cargar los datos tanto en el vector como en el Árbol AVL.
+   - **Uso del vector y del Árbol AVL:**
+     - **Vector:** Almacena todas las películas de forma secuencial, permitiendo recorrerlas y ordenarlas fácilmente.
+     - **Árbol AVL:** Permite gestionar las películas mediante operaciones eficientes como búsqueda, inserción y eliminación, manteniendo un acceso rápido y evitando duplicados.
 
-2.  Ciencia y correctitud del mecanismo de lectura:
-    - Manejo de errores en la apertura del archivo:
-    En el código implementado: `if (!archivo_entrada.is_open()) {std::cout << "No se pudo abrir el archivo de peliculas." << std::endl; return 1;}`.
-    Antes de procesar los datos, el programa verifica si el archivo se abrió correctamente utilizando `is_open()`. Esto previene posibles errores futuros si el archivo no está disponible, y se notifica al usuario si ocurre algún problema. Manejar correctamente los errores de apertura es una buena práctica para evitar interrupciones inesperadas en la ejecución del programa.
-    
-    - Lectura de datos línea por línea:
-    En el código implementado:
-    `std::getline(archivo_entrada, line);`
-    `while (getline(archivo_entrada, line)) {`
-        `std::stringstream ss(line); }`
-    Se lee cada línea del archivo y se procesa utilizando `std::stringstream` para separar los campos por comas. Este mecanismo permite extraer los atributos de cada película de manera precisa, independientemente del tamaño del archivo o la cantidad de líneas.
-    
-    - Conversión de tipos y validación de datos:
-    En el código implementado:
-    `lanzamiento = std::stoi(lanzamiento_str);`
-    `duracion = std::stoi(duracion_str);`
-    Los valores de año de lanzamiento y duración se convierten a enteros mediante `std::stoi()` para asegurarse de que los datos se almacenen en el formato correcto. Esta validación es fundamental para garantizar que los datos sean coherentes y se puedan manipular correctamente en las estructuras de datos posteriores.
+2. **Ciencia y correctitud del mecanismo de lectura:**
+   - **Manejo de errores en la apertura del archivo:**
+     En el código implementado:
+     ```cpp
+     if (!archivo_entrada.is_open()) {
+         std::cout << "No se pudo abrir el archivo de peliculas." << std::endl;
+         return 1;
+     }
+     ```
+     Antes de procesar los datos, el programa verifica si el archivo se abrió correctamente utilizando `is_open()`. Esto previene posibles errores futuros si el archivo no está disponible, y se notifica al usuario si ocurre algún problema. Manejar correctamente los errores de apertura es una buena práctica para evitar interrupciones inesperadas en la ejecución del programa.
 
-    - Carga a múltiples estructuras (Vector y Árbol AVL):
-    En el código implementado:
-    `inventario.agregarPelicula(pelicula);`
-    `if (arbolPeliculas.findByTitle(titulo) == NULL)`
-    `{arbolPeliculas.add(pelicula);}`
-    Una vez que los datos son procesados y validados, se agregan al vector y al Árbol AVL:
-        -El vector permite almacenar las películas en secuencia, facilitando el recorrido y ordenamiento.
-        -El Árbol AVL asegura que no haya duplicados en la estructura mediante la verificación `findByTitle()`, lo que optimiza las futuras búsquedas, inserciones y eliminaciones con una complejidad de O(log n).
-    
-    - Cierre del archivo:
-    En el código implementado:
-    `archivo_entrada.close()`
-    Cerrar el archivo explícitamente es esencial para liberar los recursos del sistema una vez que la lectura ha finalizado. Este es un paso importante para evitar fugas de recursos y asegurar un manejo adecuado del sistema de archivos.
+   - **Lectura de datos línea por línea:**
+     En el código implementado:
+     ```cpp
+     std::getline(archivo_entrada, line);
+     while (getline(archivo_entrada, line)) {
+         std::stringstream ss(line);
+     }
+     ```
+     Se lee cada línea del archivo y se procesa utilizando `std::stringstream` para separar los campos por comas. Este mecanismo permite extraer los atributos de cada película de manera precisa, independientemente del tamaño del archivo o la cantidad de líneas.
+
+   - **Conversión de tipos y validación de datos:**
+     En el código implementado:
+     ```cpp
+     lanzamiento = std::stoi(lanzamiento_str);
+     duracion = std::stoi(duracion_str);
+     ```
+     Los valores de año de lanzamiento y duración se convierten a enteros mediante `std::stoi()` para asegurarse de que los datos se almacenen en el formato correcto. Esta validación es fundamental para garantizar que los datos sean coherentes y se puedan manipular correctamente en las estructuras de datos posteriores.
+
+   - **Carga a múltiples estructuras (Vector y Árbol AVL):**
+     En el código implementado:
+     ```cpp
+     inventario.agregarPelicula(pelicula);
+     if (arbolPeliculas.findByTitle(titulo) == NULL) {
+         arbolPeliculas.add(pelicula);
+     }
+     ```
+     Una vez que los datos son procesados y validados, se agregan al vector y al Árbol AVL:
+     - El **vector** permite almacenar las películas en secuencia, facilitando el recorrido y ordenamiento.
+     - El **Árbol AVL** asegura que no haya duplicados en la estructura mediante la verificación `findByTitle()`, lo que optimiza las futuras búsquedas, inserciones y eliminaciones con una complejidad de **O(log n)**.
+
+   - **Cierre del archivo:**
+     En el código implementado:
+     ```cpp
+     archivo_entrada.close();
+     ```
+     Cerrar el archivo explícitamente es esencial para liberar los recursos del sistema una vez que la lectura ha finalizado. Este es un paso importante para evitar fugas de recursos y asegurar un manejo adecuado del sistema de archivos.
 
 He desarrollado esta competencia al implementar un mecanismo robusto y eficiente de lectura de archivos, que permite cargar los datos correctamente en las estructuras de datos de mi proyecto. Este mecanismo incluye:
-    - La verificación correcta de la apertura del archivo.
-    - La lectura precisa de los datos línea por línea.
-    - La conversión de tipos adecuada para asegurar que los atributos se almacenen en el formato correcto.
-    - La carga simultánea en el vector y en el Árbol AVL, optimizando tanto el acceso secuencial como las operaciones de búsqueda y manejo de duplicados.
-El desarrollo de este mecanismo se observa en cómo los datos del archivo Lista.txt se procesan de manera eficiente y se almacenan en las estructuras de datos, asegurando un inventario bien organizado, sin duplicados y listo para ser manipulado correctamente.
+   - La verificación correcta de la apertura del archivo.
+   - La lectura precisa de los datos línea por línea.
+   - La conversión de tipos adecuada para asegurar que los atributos se almacenen en el formato correcto.
+   - La carga simultánea en el vector y en el Árbol AVL, optimizando tanto el acceso secuencial como las operaciones de búsqueda y manejo de duplicados.
+
+El desarrollo de este mecanismo se observa en cómo los datos del archivo `Lista.txt` se procesan de manera eficiente y se almacenan en las estructuras de datos, asegurando un inventario bien organizado, sin duplicados y listo para ser manipulado correctamente.
