@@ -119,6 +119,7 @@ Comparado con otros algoritmos, como Bubble Sort, Selection Sort, Insertion Sort
 
 Esta estabilidad es importante en mi proyecto, ya que se manejan vectores de películas con múltiples atributos. Por ejemplo, al ordenar por duración, si varias películas tienen la misma duración, Merge Sort mantendrá el orden original relativo entre ellas.
 
+---
 #### Hace un análisis de complejidad correcto y completo de todas las estructuras de datos y cada uno de sus usos en el programa.
 1. Vector:
 En mi proyecto, utilicé un vector para almacenar y gestionar el inventario de películas. A continuación, explicaré dónde se reflejan las diferentes operaciones del vector, junto con su complejidad en los distintos casos.
