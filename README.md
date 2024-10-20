@@ -167,6 +167,7 @@ Para mi proyecto, decidí utilizar Merge Sort debido a sus características espe
   
 En conclusión, el algoritmo de ordenamiento que elegí Mergesort fue el mejor para mi proyecto, por su rendimiento constante, por la mejor complejidad temporal a comparacion de otros algoritmos, en el peor y en el mejor de los casos, también por su adaptabilidad sin importar el estado inicial de la lista a ordenar y por último por su capacidad de manejar grandes conjuntos de datos de manera eficiente. 
 
+---
 #### Selecciona una estructura de datos adecuada al problema y la usa correctamente.
 Para mi proyecto, seleccioné dos estructuras de datos fundamentales: vector y Árbol AVL. La decisión de utilizar ambas estructuras se tomó cuidadosamente para abordar diferentes necesidades específicas del inventario de películas y optimizar tanto la eficiencia como la funcionalidad.
 
