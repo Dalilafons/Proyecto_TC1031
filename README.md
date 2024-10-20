@@ -82,22 +82,26 @@ Además del archivo de entrada, el programa permite al usuario agregar nuevas pe
 
 ## Descripción de las salidas del avance de proyecto
 El programa proporciona las siguientes salidas:
+
 - Mostrar Inventario de Películas:
     Al seleccionar esta opción, se listan todas las películas almacenadas en el inventario, mostrando los siguientes atributos para cada una:
-        - Título
-        - Director
-        - Género
-        - Año de lanzamiento
-        - Duración (en minutos)
+        - Título.
+        - Director.
+        - Género.
+        - Año de lanzamiento.
+        - Duración (en minutos).
+  
 - Ordenar Inventario:
     Al ordenar el inventario, se muestra la lista completa de películas organizadas de acuerdo con el atributo seleccionado:
         - Título: Orden alfabético.
         - Año de lanzamiento: Orden cronológico.
         - Duración: Orden por tiempo de reproducción en minutos.
+  
 - Buscar una Película:
     Al realizar una búsqueda por título, el programa proporciona dos posibles salidas:
         - Película encontrada: Se muestra toda la información detallada de la película.
         - Película no encontrada: Se notifica al usuario que no se encontró ninguna coincidencia para el título ingresado.
+  
 - Mensajes de confirmación y errores:
     El programa también proporciona retroalimentación al usuario mediante mensajes, como:
         - Confirmación de operaciones exitosas: (e.g., "Película agregada exitosamente.")
