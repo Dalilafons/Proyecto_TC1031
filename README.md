@@ -54,7 +54,7 @@ Al agregar películas, se verifica que no estén previamente en el árbol AVL pa
 ## Instrucciones para compilar el avance de proyecto
 Ejecuta el siguiente comando en la terminal:
 
-`g++ main.cpp -o primer_avance`
+`g++ -std=c++17 main.cpp -o primer_avance`
 
 ## Instrucciones para ejecutar el avance de proyecto
 Ejecuta el siguiente comando en la terminal:
